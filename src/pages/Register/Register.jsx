@@ -5,21 +5,28 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
-    console.log(createUser);
+    // console.log(createUser);
 
     const handleRegister = e => {
         e.preventDefault();
-        console.log(e.currentTarget);
+        // console.log(e.currentTarget);
         const form = new FormData(e.currentTarget);
         //getting the value of the input field
         const name = form.get('name');
         const photo = form.get('photo');
         const email = form.get('email');
         const password = form.get('password');
-        console.log(name, photo, email, password);
+        // console.log(name, photo, email, password);
 
         // create user
-};
+        createUser(email, password)
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    };
     return (
         <div>
             <Navbar />
